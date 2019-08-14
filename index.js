@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const logger = require('./middleware/logger');
 const router = require('./middleware/routes');
 const errorHandler = require('./middleware/errorHandler');
@@ -6,6 +7,11 @@ const errorHandler = require('./middleware/errorHandler');
 const app = express();
 
 /* Middleware */
+app.use(
+  cors({
+    origin: '*',
+  })
+);
 app.use(express.json()); // parses requests with JSON payloads
 app.use(logger);
 app.use(router);
