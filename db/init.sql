@@ -1,30 +1,55 @@
-/* From our current data
-  {
-    "id": "1",
-    "author": "Dandy",
-    "code": "// Welcome to JS!",
-    "title": "single-line.js",
-    "description": "This is how you do a single line comment in JS",
-    "language": "javascript",
-    "comments": [],
-    "favorites": 0
-  }
-*/
+-- Reset the tables
+DROP TABLE comment, "user", snippet, language;
 
--- "comments" field is missing
+-- Create all the tables
 
-CREATE TABLE snippets
+CREATE TABLE comment
 (
   id SERIAL PRIMARY KEY,
-  author VARCHAR(255) NOT NULL,
-  title VARCHAR(255) NOT NULL,
-  code VARCHAR(7999) NOT NULL,
-  description VARCHAR(500),
-  language VARCHAR(100),
-  favorites NUMERIC
+  body text,
+  author text
 );
 
-INSERT INTO snippets
+CREATE TABLE "user"
+(
+  username text PRIMARY KEY,
+  name text,
+  profile_pic text,
+  password text
+);
+
+CREATE TABLE snippet
+(
+  id SERIAL PRIMARY KEY,
+  author text,
+  code text,
+  title text,
+  description text,
+  language text,
+  favorites numeric
+);
+
+CREATE TABLE language
+(
+  name text PRIMARY KEY
+);
+
+-- TODO: Set the relationships
+
+-- ALTER TABLE "Comment" ADD FOREIGN KEY ("author") REFERENCES "User" ("username");
+
+-- ALTER TABLE "Snippet" ADD FOREIGN KEY ("author") REFERENCES "User" ("username");
+
+-- ALTER TABLE "Snippet" ADD FOREIGN KEY ("language") REFERENCES "Language" ("name");
+
+-- Add in the data
+
+INSERT INTO snippet
   (author, title, code)
 VALUES
   ('J.K. Rowling', 'Harry Potter', '// something harry would say');
+
+INSERT INTO "user"
+  (username, name)
+VALUES
+  ('scooter', 'Scott');

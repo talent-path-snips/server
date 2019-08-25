@@ -1,7 +1,7 @@
 const { pool } = require('../db/pgConfig');
 
 exports.getAllUsers = (req, res, next) => {
-  pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
+  pool.query('SELECT * FROM "user" ORDER BY username ASC', (error, results) => {
     if (error) {
       throw error;
     }
