@@ -1,5 +1,9 @@
 -- Reset the tables
-DROP TABLE comment, "user", snippet, language;
+DROP TABLE IF EXISTS comment;
+DROP TABLE IF EXISTS "user";
+DROP TABLE IF EXISTS snippet;
+DROP TABLE IF EXISTS language;
+
 
 -- Create all the tables
 
@@ -14,7 +18,7 @@ CREATE TABLE "user"
 (
   username text PRIMARY KEY,
   name text,
-  profile_pic text,
+  profilePicture text,
   password text
 );
 
@@ -36,11 +40,11 @@ CREATE TABLE language
 
 -- TODO: Set the relationships
 
--- ALTER TABLE "Comment" ADD FOREIGN KEY ("author") REFERENCES "User" ("username");
+-- ALTER TABLE "comment" ADD FOREIGN KEY ("author") REFERENCES "user" ("username");
 
--- ALTER TABLE "Snippet" ADD FOREIGN KEY ("author") REFERENCES "User" ("username");
+-- ALTER TABLE "snippet" ADD FOREIGN KEY ("author") REFERENCES "user" ("username");
 
--- ALTER TABLE "Snippet" ADD FOREIGN KEY ("language") REFERENCES "Language" ("name");
+-- ALTER TABLE "snippet" ADD FOREIGN KEY ("language") REFERENCES "language" ("name");
 
 -- Add in the data
 

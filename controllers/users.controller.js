@@ -1,10 +1,12 @@
-const { pool } = require('../db/pgConfig');
+const User = require('../models/User.model');
 
-exports.getAllUsers = (req, res, next) => {
-  pool.query('SELECT * FROM "user" ORDER BY username ASC', (error, results) => {
-    if (error) {
-      throw error;
-    }
-    res.status(200).json(results.rows);
-  });
+exports.getAllUsers = async (request, response, next) => {
+  try {
+    // 1. get data from User model
+    const users = await User.select();
+    // 2. send that out
+    return response.send(users);
+  } catch (err) {
+    next(err);
+  }
 };
