@@ -29,31 +29,6 @@ exports.insert = async ({ author, code, title, description, language }) => {
       [code, title, description, author, language]
     );
     return result.rows[0];
-
-    /*
-    if (!author || !code || !title || !description || !language)
-      throw new ErrorWithHttpStatus('Missing properties', 400);
-
-    // read snippets.json
-    const snippets = await readJsonFromDb('snippets');
-    // grab data from newSnippet (validate)
-    // make newSnippet a proper object
-    // generate default data (id, comments, favorites)
-    // push that object into snippets
-    snippets.push({
-      id: shortid.generate(),
-      author,
-      code,
-      title,
-      description,
-      language,
-      comments: [],
-      favorites: 0,
-    });
-    // write back to the file
-    await writeJsonToDb('snippets', snippets);
-    return snippets[snippets.length - 1];
-    */
   } catch (err) {
     if (err instanceof ErrorWithHttpStatus) throw err;
     else throw new ErrorWithHttpStatus('Database error');
@@ -79,20 +54,7 @@ exports.select = async query => {
 
     const results = await db.query(formattedSelect, Object.values(query));
     return results.rows;
-
-    /*
-    const whereClause = `WHERE ${Object.keys(query)
-      .map((_, i) => `%I = $${i + 1}`)
-      .join(' AND ')}`;
-    const sql = format(
-      `SELECT * FROM snippet ${query ? whereClause : ''} ORDER BY id`,
-      Object.keys(query)
-    );
-    const result = await db.query(sql, Object.values(query));
-    return result.rows;
-    */
   } catch (err) {
-    console.log(err);
     throw new ErrorWithHttpStatus('Database error');
   }
 };

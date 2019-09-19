@@ -271,6 +271,9 @@ Express!!
 
   - All routes should look something like the one above.
 
-### PostgreSQL
+### USERS!
 
--
+1. sql init script
+2. author model
+3. signup and login routes
+   1. bcrypt
