@@ -6,7 +6,7 @@ exports.insert = async ({ username, password }) => {
     if (!username || !password)
       throw new ErrorWithHttpStatus('Missing properties', 400);
     const result = await db.query(
-      `INSERT INTO author (username, password) VALUES ($1, $2) RETURNING *`,
+      `INSERT INTO author (name, password) VALUES ($1, $2) RETURNING *`,
       [username, password]
     );
     return result.rows[0];
@@ -18,7 +18,7 @@ exports.insert = async ({ username, password }) => {
 
 exports.select = async username => {
   try {
-    const results = await db.query(`SELECT * FROM author WHERE username = $1`, [
+    const results = await db.query(`SELECT * FROM author WHERE name = $1`, [
       username,
     ]);
     return results.rows[0];

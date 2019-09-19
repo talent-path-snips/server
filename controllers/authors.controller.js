@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const Author = require('../models/Author.model');
 const ErrorWithHttpStatus = require('../utils/ErrorWithHttpStatus');
 
@@ -25,8 +26,12 @@ exports.login = async ({ body: { username, password } }, response, next) => {
     if (!isCorrectPassword)
       throw new ErrorWithHttpStatus('Incorrect password', 401);
 
-    response.send('Logged in');
+    // create a token
+    const token = jwt.sign(author.name, process.env.JWT_SECRET);
+
+    response.send(token);
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };

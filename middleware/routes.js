@@ -1,6 +1,7 @@
 const express = require('express');
 const snippets = require('../controllers/snippets.controller');
 const authors = require('../controllers/authors.controller');
+const validate = require('../middleware/validate');
 
 const router = express.Router();
 
@@ -13,7 +14,7 @@ router.get('/api', (request, response) => {
 });
 
 /* Snippets routes */
-router.post('/api/snippets', snippets.createSnippet);
+router.post('/api/snippets', validate, snippets.createSnippet);
 router.get('/api/snippets', snippets.getAllSnippets);
 router.get('/api/snippets/:id', snippets.getSnippetById);
 router.patch('/api/snippets/:id', snippets.update);
