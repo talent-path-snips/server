@@ -6,11 +6,9 @@ module.exports = (request, response, next) => {
 
   const token = authorization.split(' ')[1];
   try {
-    const result = jwt.verify(token, process.env.JWT_SECRET);
-    console.log(result);
-
+    jwt.verify(token, process.env.JWT_SECRET);
     next();
   } catch (error) {
-    response.send(error);
+    response.status(401).send();
   }
 };
