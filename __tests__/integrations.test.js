@@ -10,7 +10,6 @@ beforeAll(async () => {
 });
 
 describe('snippets', () => {
-  console.log(process.env.NODE_ENV, process.env.TEST_DATABASE_URL);
   afterEach(() => init.seedSnippets());
 
   describe('GET snippets', () => {
