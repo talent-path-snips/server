@@ -13,10 +13,9 @@ describe('snippets', () => {
   afterEach(() => init.seedSnippets());
 
   describe('GET snippets', () => {
-    // beforeEach(() => init.seedAuthors());
     it('Gets all the snippets when passed no query parameters', async () => {
       const response = await request(app).get('/api/snippets');
-      expect(response.body.length).toBe(2);
+      expect(response.body.length).toBe(3);
     });
 
     it('Gets some snippets when passed query parameters', async () => {
