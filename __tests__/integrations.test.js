@@ -10,12 +10,13 @@ beforeAll(async () => {
 });
 
 describe('snippets', () => {
+  console.log(process.env.NODE_ENV, process.env.TEST_DATABASE_URL);
   afterEach(() => init.seedSnippets());
 
   describe('GET snippets', () => {
     it('Gets all the snippets when passed no query parameters', async () => {
       const response = await request(app).get('/api/snippets');
-      expect(response.body.length).toBe(3);
+      expect(response.body.length).toBe(2);
     });
 
     it('Gets some snippets when passed query parameters', async () => {
