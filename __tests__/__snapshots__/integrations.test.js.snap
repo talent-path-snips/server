@@ -13,7 +13,7 @@ Array [
   },
   Object {
     "author": "Scott",
-    "code": "4 + 4",
+    "code": "4 + 2",
     "description": "This is how you add",
     "favorites": 0,
     "id": 2,
