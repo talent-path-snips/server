@@ -1,6 +1,5 @@
 // load our env variables
-const path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+require('dotenv').config();
 const pg = require('pg');
 
 // create a pg Pool object
