@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const db = require('./index');
+const db = require('.');
 
 exports.createTables = () =>
   db.query(
@@ -58,3 +58,14 @@ exports.seedSnippets = () =>
   );`
     )
   );
+
+exports.seed = async () => {
+  try {
+    await this.createTables();
+    await this.seedAuthors();
+    await this.seedSnippets();
+    console.log('Seeding completed successfully!');
+  } catch (err) {
+    console.log(err);
+  }
+};

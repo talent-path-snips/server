@@ -1,5 +1,3 @@
-// load our env variables
-require('dotenv').config();
 const pg = require('pg');
 
 // create a pg Pool object
